@@ -11,12 +11,17 @@ def give_bmi(height: list[int | float], weight: list[int | float]) -> list[int |
             raise IndexError("Numbers of input in the two lists are not same")
         else:
             for h, w in zip(height, weight):
+                if not isinstance(h, (int, float)) or not isinstance(w, (int, float)):
+                    raise TypeError("Must contain only int or float")
                 val = w / (h * h)
                 bmi_list.append(val)
         return bmi_list
 
     except IndexError as msg:
         print("IndexError:", msg)
+
+    except TypeError as msg:
+        print("TypeError:", msg)
 
     except Exception as e:
         print("Unhandled error has occured:", e)
@@ -33,9 +38,9 @@ def apply_limit(bmi: list[int | float], limit: int) -> list[bool]:
         
         for b in bmi:
             if b >= limit:
-                bmi_tf.append("True")
+                bmi_tf.append(True)
             else:
-                bmi_tf.append("False")
+                bmi_tf.append(False)
         
         return bmi_tf
 
