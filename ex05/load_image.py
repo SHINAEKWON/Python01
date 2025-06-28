@@ -16,5 +16,3 @@ def ft_load(path: str) -> list:
 
     except Exception as e:
         print("Unhandled error has occured:", e)
-
-
