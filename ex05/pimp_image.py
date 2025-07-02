@@ -1,15 +1,16 @@
-from load_image import ft_load
 from PIL import Image
 import numpy as np
 
+
 def ft_invert(array) -> list:
     """
-    This function takes an array of image(3d numpy list or numpy array) and inverts colors.
+    This function takes an array of image
+    (3d numpy list or numpy array) and inverts colors.
     It returns a list array of inverted image.
     """
     try:
         inverted = 255 - array
-        img_to_save=Image.fromarray(inverted)
+        img_to_save = Image.fromarray(inverted)
         img_to_save.save("inverted.jpg")
 
     except Exception as e:
@@ -21,12 +22,13 @@ def ft_invert(array) -> list:
 
 def ft_red(array) -> list:
     """
-    This function takes an array of image(3d numpy list or numpy array) and preserves only red colors.
+    This function takes an array of image
+    (3d numpy list or numpy array) and preserves only red colors.
     It returs a list array of filtered image in red.
     """
     try:
         np_array = np.array(array)
-        
+
         red = np_array * [1, 0, 0]
 
         # After multiplication uint8 switches to int8
@@ -34,7 +36,7 @@ def ft_red(array) -> list:
         if red.dtype != np.uint8:
             red = red.astype(np.uint8)
 
-        img=Image.fromarray(red)
+        img = Image.fromarray(red)
         img.save("red.jpg")
 
     except Exception as e:
@@ -43,9 +45,11 @@ def ft_red(array) -> list:
 
     return red
 
+
 def ft_green(array) -> list:
     """
-    This function takes an array of image(3d numpy list or numpy array) and preserves only green colors.
+    This function takes an array of image
+    (3d numpy list or numpy array) and preserves only green colors.
     It returs a list array of filtered image in green.
     """
     try:
@@ -60,7 +64,8 @@ def ft_green(array) -> list:
 
         green = np.zeros_like(np_array)
         green[:, :, 1] = np_array[:, :, 1]
-        green = np_array - (np_array - green) #Line added only to use the '-' operator
+        green = np_array - (np_array - green)
+        # above: Line added only to use the '-' operator
 
         img = Image.fromarray(green)
         img.save("green.jpg")
@@ -68,12 +73,14 @@ def ft_green(array) -> list:
     except Exception as e:
         print("Error has occured:", e)
         return []
-    
+
     return green
+
 
 def ft_blue(array) -> list:
     """
-    This function takes an array of image(3d numpy list or numpy array) and preserves only blue colors.
+    This function takes an array of image
+    (3d numpy list or numpy array) and preserves only blue colors.
     It returs a list array of filtered image in blue.
     """
     try:
@@ -84,16 +91,18 @@ def ft_blue(array) -> list:
 
         img = Image.fromarray(blue)
         img.save("blue.jpg")
-    
+
     except Exception as e:
         print("Error has occured:", e)
         return []
 
     return blue
 
+
 def ft_grey(array) -> list:
     """
-    This functions transforms an RGB image to a grayscale image
+    This functions transforms an RGB image
+    to a grayscale image
     Input parameter: an array
     Return value: list
     """
